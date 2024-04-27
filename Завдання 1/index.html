@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Рух квадрата по колу</title>
+    <style>
+      #square {
+      width: 50px;
+      height: 50px;
+      background-color: red;
+      position: absolute;
+    }
+    </style>
+</head>
+<body>
+   <button id="startStop" onclick="startStop()">Start</button>
+   <div id="square"></div>
+
+   <script>
+      var square = document.getElementById('square');
+      var radius = 100;
+      var t = 0;
+      var speed = 0.1;
+      var st = false;
+
+      function startStop(){
+         if(st){
+            clearInterval(proc);
+            st = false;
+            document.getElementById('startStop').innerHTML = 'Start';
+         }else{
+            proc = setInterval(move, 100);
+            st = true;
+            document.getElementById('startStop').innerHTML = 'Stop';
+         }
+      }
+
+      function move(){
+         var x = radius * Math.cos(t) + radius;
+         var y = radius * Math.sin(t) + radius;
+         square.style.left = x + 'px';
+         square.style.top = y + 'px';
+         t += speed;
+         if(t > 2 * Math.PI){
+            t=0;
+         }
+      }
+   </script>
+</body>
+</html>
